@@ -41,7 +41,7 @@ const generateReading = function(currentFaction) {
     let draw = drawCard();
     $("#spread").append(`
       <ul class='draw'><li class='card p-2 ${draw.suit}'>
-      <h5><img src="/images/${draw.suit}.svg" height="50px"> ${draw.card}</h5>
+      <h5><img src="./images/${draw.suit}.svg" height="50px"> ${draw.card}</h5>
       <p>${(Math.random() < 0.5) ? "Reversed: "+draw.reversed : draw.meaning}</p>
       </li></ul>`);
   });
