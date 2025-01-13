@@ -1,0 +1,26 @@
+body {
+  background-color: lightblue;
+  font-size: large;
+}
+
+.long-description {
+  border: 2px solid blue;
+  padding: 10px;
+  background-color: lightgrey;
+}
+
+.arcana {
+  background-color:white;
+}
+.gears {
+  background-color: lightgrey;
+}
+.doors {
+  background-color: burlywood;
+}
+.roses {
+  background-color: lightcoral
+}
+.eyes {
+  background-color: lightskyblue
+}
