@@ -20,6 +20,7 @@ const drawIntoSpread = function () {
   }
 }
 
+//combine this & spread instead of generating all at once and then revealing
 const placeCard = function () {
   if(cardsDrawn < positions[spread].length) {
     cardsDrawn++;
@@ -29,18 +30,13 @@ const placeCard = function () {
   } else console.log("All cards drawn.");
 
 }
+
+const hoverCard = function (drawEvent) {
+  $("#question"+drawEvent.target.id.substring(4,5)).toggleClass("currentCard");
+}
+
 $("#faction").prepend(factions[spread]["name"]+" ");
 
 drawIntoSpread();
 $("#drawButton").on("click", placeCard)
-
-
-$("#spread > img").on( "mouseenter", function(e) {
-  let idNo = e.target.id.substring(4,5);
-  $("#question"+idNo).addClass("currentCard");
-  $("#meaning"+idNo).removeClass("unflipped");
-} );
-$("#spread > img").on( "mouseleave", function(e) {
-  let idNo = e.target.id.substring(4,5);
-  $("#question"+idNo).removeClass("currentCard")
-})
+$("#spread > img").on( "mouseenter mouseleave", function(e) {hoverCard(e)});
