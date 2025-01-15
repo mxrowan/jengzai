@@ -19,8 +19,20 @@ body {
   background-color: burlywood;
 }
 .roses {
-  background-color: lightcoral
+  background-color: lightcoral;
 }
 .eyes {
-  background-color: lightskyblue
+  background-color: lightskyblue;
+}
+
+.currentCard {
+  background-color: lightgrey;
+}
+
+li.unflipped {
+  display: none;
+}
+
+img.unflipped {
+  opacity: 0;
 }
