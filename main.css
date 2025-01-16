@@ -1,6 +1,39 @@
+:root {
+  --attra-primary: #1B1464;
+  --attra-secondary: #A1A1A1;
+
+  --asmus-primary: #9E0B0F;
+  --asmus-secondary: #F7941D;
+
+  --stel-primary: #F7941D;
+  --stel-secondary: #000000;
+
+  --nizari-primary: #A1A1A1;
+  --nizari-secondary: #000000;
+
+  --idona-primary: #6AAE97;
+  --idona-secondary: #673B3A;
+
+  --veras-primary: #673B3A;
+  --veras-secondary: #A1A1A1;
+
+  --ralis-primary: #FFFFFF;
+  --ralis-secondary: #F7941D;
+}
+/* The rest of the CSS file 
+#foo h1 {
+  color: var(--main-color);
+}
+  */
+
 body {
   background-color: lightblue;
   font-size: large;
+}
+
+header {
+  background-image: linear-gradient(var(--idona-secondary),var(--asmus-secondary), var(--nizari-primary));
+  color: white;
 }
 
 .long-description {
@@ -13,20 +46,57 @@ body {
   background-color:white;
 }
 .gears {
-  background-color: lightgrey;
+  background-color: var(--asmus-primary);
 }
 .doors {
-  background-color: burlywood;
+  background-color: var(--stel-secondary);
 }
 .roses {
-  background-color: lightcoral;
+  background-color: var(--attra-primary);
 }
 .eyes {
-  background-color: lightskyblue;
+  background-color: var(--nizari-secondary);
 }
 
+#nav-idona a {
+  color: black;
+  font-weight: bold;
+  background-image: linear-gradient(to bottom, var(--idona-secondary),var(--idona-primary), var(--idona-secondary));
+}
+#nav-asmus a {
+  color: black;
+  font-weight: bold;
+  background-image: linear-gradient(to bottom, var(--asmus-primary),var(--asmus-secondary), var(--asmus-secondary), var(--asmus-primary));
+}
+#nav-stel a {
+  color: black;
+  font-weight: bold;
+  background-image: linear-gradient(to bottom, var(--stel-secondary),var(--stel-primary), var(--stel-primary), var(--stel-secondary));
+}
+#nav-nizari a {
+  color: black;
+  font-weight:bold;
+  background-image: linear-gradient(to bottom, var(--nizari-secondary),var(--nizari-primary), var(--nizari-primary), var(--nizari-secondary));
+}
+#nav-veras a {
+  color: black;
+  font-weight: bold;
+  background-image: linear-gradient(to bottom, var(--veras-primary),var(--veras-secondary), var(--veras-secondary), var(--veras-primary));
+}
+#nav-attra a {
+  color: black;
+  font-weight: bold;
+  background-image: linear-gradient(to bottom, var(--attra-primary),var(--attra-secondary), var(--attra-secondary), var(--attra-primary));
+}
+#nav-ralis a {
+  color: black;
+  font-weight: bold;
+  background-image: linear-gradient(to bottom, var(--ralis-secondary),var(--ralis-primary), var(--ralis-primary), var(--ralis-secondary));
+}
+
+
 .currentCard {
-  background-color: lightgrey;
+  background-color: white;
 }
 
 li.unflipped {
