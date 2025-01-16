@@ -8,13 +8,13 @@
   <link rel="stylesheet" href="../main.css">
 </head>
 <body>
-  <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+  <header class="d-flex flex-wrap justify-content-center py-3 px-3 mb-4 border-bottom">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none col">
-      <img src="./images/wheel.png" height="40" class="bi mx-2">
+      <img src="./images/wheel.png" height="40" class="bi mx-2 border border-white">
     </a>
 
-    <ul class="nav nav-pills">
-      <li id="nav-idona" class="nav-item"><a href="/spread?idona" class="nav-link active" aria-current="page">Idona</a></li>
+    <ul class="nav nav-pills gap-2">
+      <li id="nav-idona" class="nav-item"><a href="/spread?idona" class="nav-link">Idona</a></li>
       <li id="nav-asmus" class="nav-item"><a href="/spread?asmus" class="nav-link">Asmus</a></li>
       <li id="nav-stel" class="nav-item"><a href="/spread?stel" class="nav-link">Stel</a></li>
       <li id="nav-nizari" class="nav-item"><a href="/spread?nizari" class="nav-link">Nizari</a></li>
@@ -27,10 +27,10 @@
 
   <div class="container">
     <div class="row">
-      <div class="col border" style="min-width: 455px">
-        <h1 id="faction">Spread</h1>
-        <button id="drawButton" class="btn btn-primary mb-2">Draw Card</button>
-        <div id="spread" style="position: relative">
+      <div class="col border col-md-6 col-12 pb-3" style="min-width:455px">
+        <h1 id="faction" style="position: sticky; top: 0px">Spread</h1>
+        <button id="drawButton" class="btn btn-primary mb-2" style="position:sticky; top:50px">Draw Card</button>
+        <div id="spread" class="sticky">
           <img id="spreadImage" src="./images/asmus.png" alt="spread layout" width="430px">
         </div>  
       </div>
