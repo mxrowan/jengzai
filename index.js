@@ -29,9 +29,9 @@ const drawIntoSpread = function () {
     let rotation = 0;
     if( draw.flip ) rotation = 180;
     if( offset.rotate ) rotation += offset.rotate;
-    $("#spread").append(`<img id="draw${(i+1)}" class="unflipped" src="./images/cards/${draw.suit}.png" style="position: absolute; left: ${offset.x}px; top: ${offset.y}px${ (rotation) ? "; rotate: "+rotation+"deg" : "" }">`);
+    $("#spread").append(`<img id="draw${(i+1)}" class="unflipped crosshair" src="./images/cards/${draw.suit}.png" style="position: absolute; left: ${offset.x}px; top: ${offset.y}px${ (rotation) ? "; rotate: "+rotation+"deg" : "" }">`);
     $("#reading").append(`<li id="question${(i+1)}">${factions[spread]["spread"][i]}
-    <ul><li id="meaning${(i+1)}" class="unflipped"><b>${draw.card} ${(draw.flip) ? "(REVERSED)" : ""}</b><br>${(draw.flip) ? draw.reversed : draw.meaning}</li></ul></li><br>`);
+    <ul style="pointer-events:none"><li id="meaning${(i+1)}" class="unflipped"><b>${draw.card} ${(draw.flip) ? "(REVERSED)" : ""}</b><br>${(draw.flip) ? draw.reversed : draw.meaning}</li></ul></li><br>`);
   }
 }
 
@@ -46,20 +46,36 @@ const placeCard = function () {
 
 }
 
+//highlight question when hover position
 const hoverCard = function (drawEvent) {
   $("#question"+drawEvent.target.id.substring(4,5)).toggleClass("currentCard");
 }
 
-$("li.nav-item").on("mouseenter", function(e) {
+//hover functions
+$("li.nav-item").on("mouseenter mouseleave", function(e) {
   let fac = factions[e.currentTarget.id.substring(4)];
   $("#short").text(fac.name+": "+fac.short)
 })
+$("header").on("mouseleave", function() {
+  $("#short").slideUp();
+})
+$("header").on("mouseenter", function() {
+  $("#short").text(factions[spread].name+": "+factions[spread].short)
+  $("#short").slideDown();
+})
 
-$("li a.nav-link").removeClass("active").removeAttr("aria-current");
-$("li#nav-"+spread+" a.nav-link").addClass("active").attr("aria-current", "page");
+$("li a.nav-link").removeClass("currentFaction").removeAttr("aria-current");
+$("li#nav-"+spread+" a.nav-link").addClass("currentFaction").attr("aria-current", "page");
 
 $("#faction").prepend(factions[spread]["name"]+" ");
 $("#spreadImage").attr({src:"./images/"+spread+".png", alt:"idona spread layout"});
 
 drawIntoSpread();
+//card hovers
 $("#spread > img").on( "mouseenter mouseleave", function(e) {hoverCard(e)});
+$("#reading > li").on( "mouseenter mouseleave", function(e) {
+  let x = "+=";
+  if( e.type === "mouseleave" ) x = "-=";
+  $("#draw"+e.currentTarget.id.slice(-1)).toggleClass("currentDraw");
+  $("#"+e.currentTarget.id).toggleClass("crosshair");
+});

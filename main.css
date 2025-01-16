@@ -20,20 +20,32 @@
   --ralis-primary: #FFFFFF;
   --ralis-secondary: #F7941D;
 }
-/* The rest of the CSS file 
-#foo h1 {
-  color: var(--main-color);
+
+@media (prefers-color-scheme: light) {
+  body {
+    color: #121212;
+    background: #aaa;
+    background-color: white;
+  }
 }
-  */
 
 body {
-  background-color: lightblue;
+  background-color: #121212;
+  color: #eee;
   font-size: large;
 }
 
 header {
+background-color: #333;
+/*
   background-image: linear-gradient(var(--idona-secondary),var(--asmus-secondary), var(--nizari-primary));
+*/
   color: white;
+}
+
+.sticky {
+  position: sticky;
+  top: 100px;
 }
 
 .long-description {
@@ -56,6 +68,33 @@ header {
 }
 .eyes {
   background-color: var(--nizari-secondary);
+}
+
+.currentCard {
+  border: 4px solid #eee;
+  padding: 2px;
+  background-color:#333
+}
+
+.currentFaction {
+  border: 4px solid #eee;
+}
+
+.currentDraw {
+  outline: 10px solid #eee;
+}
+
+.unflipped {
+  display: none;
+}
+
+img.unflipped {
+  display: block;
+  opacity: 0;
+}
+
+.crosshair {
+  cursor: crosshair;
 }
 
 #nav-idona a {
@@ -92,17 +131,4 @@ header {
   color: black;
   font-weight: bold;
   background-image: linear-gradient(to bottom, var(--ralis-secondary),var(--ralis-primary), var(--ralis-primary), var(--ralis-secondary));
-}
-
-
-.currentCard {
-  background-color: white;
-}
-
-li.unflipped {
-  display: none;
-}
-
-img.unflipped {
-  opacity: 0;
 }
