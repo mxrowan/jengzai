@@ -53,29 +53,19 @@ background-color: #333;
 
 .sticky {
   position: sticky;
-  top: 100px;
+  top: 0px;
+}
+
+.info-box {
+  cursor: pointer;
+  font-style: italic;
 }
 
 .long-description {
-  border: 2px solid blue;
   padding: 10px;
-  background-color: lightgrey;
-}
-
-.arcana {
-  background-color:white;
-}
-.gears {
-  background-color: var(--asmus-primary);
-}
-.doors {
-  background-color: var(--stel-secondary);
-}
-.roses {
-  background-color: var(--attra-primary);
-}
-.eyes {
-  background-color: var(--nizari-secondary);
+  background-color: #333;
+  color: #eee;
+  display: none;
 }
 
 .currentQuestion {

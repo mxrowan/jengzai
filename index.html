@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="./main.css">
 </head>
 <body>
-  <header class="justify-content-center pt-3 px-3 mb-4 border-bottom">
+  <header class="justify-content-center px-3 mb-4 border-bottom">
     <ul class="nav nav-pills gap-3 pb-3 d-flex justify-content-center align-items-center">
       <li id="nav-idona" class="nav-item"><a href="?idona" class="nav-link">Idona</a></li>
       <li id="nav-asmus" class="nav-item"><a href="?asmus" class="nav-link">Asmus</a></li>
@@ -18,20 +18,34 @@
       <li id="nav-attra" class="nav-item"><a href="?attra" class="nav-link">Attra</a></li>
       <li id="nav-ralis" class="nav-item"><a href="?ralis" class="nav-link">Ralis</a></li>
     </ul>
-    <p id="short" class="col-12 text-center"></p>
+    <p id="short" class="col-12 text-center" style="display:none"></p>
   </header>
 
   <div class="container">
     <div class="row">
-      <div class="col border col-md-6 col-12 pb-3" style="min-width:455px">
-        <h1 id="faction" style="position: sticky; top: 0px">Spread</h1>
-        <button id="drawButton" type="button" class="btn btn-primary mb-2" style="position:sticky; top:50px" onclick="placeCard()">Draw Card</button>
-        <button id="printButton" type="button" class="btn btn-secondary mb-2" style="position:sticky; top:50px" onclick="window.print()">Print Reading</button>
-        <div id="spread" class="sticky">
-          <img id="spreadImage" src="./images/asmus.png" alt="spread layout" width="430px" onclick="placeCard()" style="cursor:pointer">
-        </div>  
+      <div class="col border col-md-6 col-12 p-3" style="min-width:455px">
+        <div class="sticky">
+        <div style="min-height:50px">
+          <h1 id="faction" class="me-1" style="float: left">Spread</h1>
+          <p id="info" class="info-box d-flex align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle me-1" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+              <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+            </svg>
+            info
+          </p>
+        </div>
+        <div style="clear:left">
+          <p id="long" class="long-description"></p>
+        </div>
+          <button id="drawButton" type="button" class="btn btn-primary mb-2" onclick="placeCard()">Draw Card</button>
+          <button id="printButton" type="button" class="btn btn-secondary mb-2" onclick="window.print()">Print Reading</button>
+          <div id="spread" class="sticky">
+            <img id="spread-image" src="./images/asmus.png" alt="spread layout" width="430px" onclick="placeCard()" style="cursor:pointer">
+          </div>  
+        </div>
       </div>
-      <div class="col border">
+      <div class="col border p-3">
         <h2>Reading</h2>
         <ul id="reading">
         </ul>
