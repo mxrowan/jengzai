@@ -29,6 +29,14 @@
   }
 }
 
+.modal-dialog div {
+ background: #333;
+ border: 1px solid white;
+}
+.btn-close {
+  background-color: #eee
+}
+
 body {
   background-color: #121212;
   color: #eee;
@@ -70,18 +78,20 @@ background-color: #333;
   background-color: var(--nizari-secondary);
 }
 
-.currentCard {
+.currentQuestion {
   border: 4px solid #eee;
   padding: 2px;
-  background-color:#333
+  background-color:#333;
+  cursor: crosshair;
 }
 
 .currentFaction {
-  border: 4px solid #eee;
+  outline: 4px solid #eee;
 }
 
 .currentDraw {
-  outline: 10px solid #eee;
+  outline: 10px dotted;
+  cursor: crosshair;
 }
 
 .unflipped {
@@ -93,8 +103,13 @@ img.unflipped {
   opacity: 0;
 }
 
-.crosshair {
-  cursor: crosshair;
+.nav-item {
+  padding-top: 20px;
+}
+.nav-item:hover{
+  border-bottom: 1px solid white;
+  padding-top: 0px;
+  padding-bottom: 10px;
 }
 
 #nav-idona a {

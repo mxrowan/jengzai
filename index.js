@@ -8,7 +8,7 @@ const deck = [
 ] //deck = [{suit, card, meaning, reversed}]
 
 const positions = {
-  "idona":[{"x":"180","y":"155"}],"asmus":[{"x":"180","y":"49"},{"x":"272","y":"221"},{"x":"88","y":"221"}],"stel":[{"x":"332","y":"155"},{"x":"230","y":"155"},{"x":"128","y":"155"},{"x":"26","y":"155"}],"nizari":[{"x":"156","y":"69"},{"x":"218","y":"155"},{"x":"176","y":"241"},{"x":"114","y":"155"}],"veras":[{"x":"262","y":"16"},{"x":"344","y":"155"},{"x":"262","y":"294"},{"x":"98","y":"294"},{"x":"16","y":"155"},{"x":"98","y":"16"},{"x":"180","y":"155"}],"attra":[{"x":"344","y":"109"},{"x":"324","y":"201"},{"x":"231","y":"59"},{"x":"231","y":"251"},{"x":"129","y":"59"},{"x":"129","y":"251"},{"x":"26","y":"59"},{"x":"26","y":"251"}],"ralis":[{"x":"180","y":"155"},{"x":"180","y":"155", "rotate":270},{"x":"311","y":"49"},{"x":"311","y":"261"},{"x":"49","y":"261"},{"x":"49","y":"49"}]
+  "idona":[{"x":"180","y":"155"}],"asmus":[{"x":"180","y":"49"},{"x":"272","y":"221"},{"x":"88","y":"221"}],"stel":[{"x":"332","y":"155"},{"x":"230","y":"155"},{"x":"128","y":"155"},{"x":"26","y":"155"}],"nizari":[{"x":"156","y":"69"},{"x":"218","y":"155"},{"x":"176","y":"241"},{"x":"114","y":"155"}],"veras":[{"x":"262","y":"16"},{"x":"344","y":"155"},{"x":"262","y":"294"},{"x":"98","y":"294"},{"x":"16","y":"155"},{"x":"98","y":"16"},{"x":"180","y":"155", "heresy":"true"}],"attra":[{"x":"344","y":"109"},{"x":"324","y":"201"},{"x":"231","y":"59"},{"x":"231","y":"251"},{"x":"129","y":"59"},{"x":"129","y":"251"},{"x":"26","y":"59"},{"x":"26","y":"251"}],"ralis":[{"x":"180","y":"155","heresy":"true"},{"x":"180","y":"155", "rotate":270,"heresy":"true"},{"x":"311","y":"49","heresy":"true"},{"x":"311","y":"261","heresy":"true"},{"x":"49","y":"261","heresy":"true"},{"x":"49","y":"49","heresy":"true"}]
 } //{ "asmus": [ {x,y}, {x,y}, {x,y} ] }
 
 //remove one card from the deck and return it
@@ -18,6 +18,29 @@ const drawCard = function() {
 
 let spread = window.location.search.substring(1) || "idona"; //URL encode after ?faction=
 let cardsDrawn = 0;
+const heresyModal = new bootstrap.Modal("#warnHeresy");
+let heresyConfirmed = false;
+
+const heresyCheck = function () {
+  const heresyPromise = new Promise(function(resolve, reject){
+    heresyModal.show();
+      $('#heresy').click(function(){
+          resolve("User has chosen heresy. Notifying Idona......");
+      });
+      $('#loyalty').click(function(){
+          reject("Thank you for choosing loyalty to the Hexarchate.");
+      });
+    }).then(function(val){
+      //val is your returned value. argument called with resolve.
+      alert(val);
+      heresyModal.hide();
+      heresyConfirmed = true;
+      revealCard();
+    }).catch(function(err){
+      //user clicked cancel
+      alert(err);
+    });
+}
 
 const drawIntoSpread = function () {
   console.log("Drawing into: "+spread);
@@ -37,18 +60,28 @@ const drawIntoSpread = function () {
 
 //combine this & spread instead of generating all at once and then revealing
 //onclick="placeCard()" for img & btn
+const revealCard = function () {
+  cardsDrawn++;
+  $("#draw"+cardsDrawn).removeClass("unflipped");
+  $("#meaning"+cardsDrawn).removeClass("unflipped"); 
+  hoverCard(cardsDrawn-1);
+  hoverCard(cardsDrawn); 
+}
 const placeCard = function () {
   if(cardsDrawn < positions[spread].length) {
-    cardsDrawn++;
-    $("#draw"+cardsDrawn).removeClass("unflipped");
-    $("#meaning"+cardsDrawn).removeClass("unflipped");  
-  } else console.log("All cards drawn.");
-
+    if(positions[spread][(cardsDrawn)].heresy && !heresyConfirmed){
+      heresyCheck();
+    } else revealCard();  
+  } else {
+    hoverCard(cardsDrawn);
+    console.log("All cards drawn.");
+  }
 }
 
 //highlight question when hover position
-const hoverCard = function (drawEvent) {
-  $("#question"+drawEvent.target.id.substring(4,5)).toggleClass("currentCard");
+const hoverCard = function (number) {
+  $("#question"+number).toggleClass("currentQuestion");
+  $("#draw"+number).toggleClass("currentDraw");
 }
 
 //hover functions
@@ -72,10 +105,7 @@ $("#spreadImage").attr({src:"./images/"+spread+".png", alt:"idona spread layout"
 
 drawIntoSpread();
 //card hovers
-$("#spread > img").on( "mouseenter mouseleave", function(e) {hoverCard(e)});
+$("#spread > img").on( "mouseenter mouseleave", function(e) {hoverCard(e.target.id.slice(-1))});
 $("#reading > li").on( "mouseenter mouseleave", function(e) {
-  let x = "+=";
-  if( e.type === "mouseleave" ) x = "-=";
-  $("#draw"+e.currentTarget.id.slice(-1)).toggleClass("currentDraw");
-  $("#"+e.currentTarget.id).toggleClass("crosshair");
+  hoverCard(e.currentTarget.id.slice(-1));
 });
